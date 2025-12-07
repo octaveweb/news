@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>News App</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-newspaper"></i>
+                <h1>NewsHub</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-category="all">All</a></li>
+                    <li><a href="#" class="nav-link" data-category="technology">Technology</a></li>
+                    <li><a href="#" class="nav-link" data-category="business">Business</a></li>
+                    <li><a href="#" class="nav-link" data-category="sports">Sports</a></li>
+                    <li><a href="#" class="nav-link" data-category="health">Health</a></li>
+                    <li><a href="#" class="nav-link" data-category="entertainment">Entertainment</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search news...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Story -->
+    <section class="featured">
+        <div class="featured-card" id="featuredCard">
+            <img src="https://images.unsplash.com/photo-1764893216863-f4e2bbd62a5e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured Story">
+            <div class="featured-content">
+                <span class="featured-badge">BREAKING</span>
+                <h2>Top Story Title</h2>
+                <p>This is the featured news story that appears at the top of the app.</p>
+                <a href="#" class="read-more">Read Full Story</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Trending Now</h3>
+                <div class="trending-list">
+                    <div class="trending-item">
+                        <span class="trend-rank">1</span>
+                        <div class="trend-content">
+                            <p class="trend-title">AI Technology Advancements</p>
+                            <span class="trend-count">12.5K reads</span>
+                        </div>
+                    </div>
+                    <div class="trending-item">
+                        <span class="trend-rank">2</span>
+                        <div class="trend-content">
+                            <p class="trend-title">Market Updates Today</p>
+                            <span class="trend-count">9.3K reads</span>
+                        </div>
+                    </div>
+                    <div class="trending-item">
+                        <span class="trend-rank">3</span>
+                        <div class="trend-content">
+                            <p class="trend-title">Sports Championship Winners</p>
+                            <span class="trend-count">8.1K reads</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Subscribe</h3>
+                <p>Get daily news delivered to your inbox</p>
+                <form class="subscribe-form" id="subscribeForm">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit" class="btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </aside>
+
+        <!-- News Feed -->
+        <section class="news-feed">
+            <div class="news-grid" id="newsGrid">
+                <!-- News cards will be generated here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="sidebar-section">
+                <h3>Popular Tags</h3>
+                <div class="tags">
+                    <a href="#" class="tag">#Technology</a>
+                    <a href="#" class="tag">#Business</a>
+                    <a href="#" class="tag">#AI</a>
+                    <a href="#" class="tag">#Sports</a>
+                    <a href="#" class="tag">#Health</a>
+                    <a href="#" class="tag">#Innovation</a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>NewsHub brings you the latest news from around the world.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@newshub.com</p>
+                <p>Phone: +1 (555) 123-4567</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 NewsHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Article Detail Modal -->
+    <div id="articleModal" class="article-modal">
+        <div class="article-modal-overlay"></div>
+        <div class="article-modal-content">
+            <button class="article-close-btn" id="closeArticle">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="article-container">
+                <div class="article-header">
+                    <img id="articleImage" src="https://images.unsplash.com/photo-1764893216863-f4e2bbd62a5e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Article" class="article-image">
+                    <div class="article-header-content">
+                        <span id="articleCategory" class="article-badge"></span>
+                        <h1 id="articleTitle" class="article-title"></h1>
+                        <div class="article-meta">
+                            <div class="article-author-info">
+                                <div id="articleAuthorAvatar" class="article-avatar"></div>
+                                <div>
+                                    <p id="articleAuthor" class="article-author"></p>
+                                    <p id="articleDate" class="article-date"></p>
+                                </div>
+                            </div>
+                            <div class="article-actions">
+                                <button class="article-action-btn" id="shareBtn" title="Share">
+                                    <i class="fas fa-share-alt"></i> Share
+                                </button>
+                                <button class="article-action-btn" id="bookmarkBtn" title="Bookmark">
+                                    <i class="fas fa-bookmark"></i> Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-body">
+                    <div id="articleDescription" class="article-description"></div>
+                    <div id="articleContent" class="article-content"></div>
+                </div>
+
+                <div class="article-footer">
+                    <div class="article-tags">
+                        <h3>Tags:</h3>
+                        <div id="articleTagsContainer" class="article-tags-list"></div>
+                    </div>
+                    <div class="article-related">
+                        <h3>Related Articles</h3>
+                        <div id="relatedArticles" class="related-articles-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
