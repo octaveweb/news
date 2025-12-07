@@ -1,300 +1,434 @@
-// Sample News Data
-const newsData = [
-  {
-    id: 1,
-    title: "Latest AI Breakthrough Transforms Healthcare",
-    description: "Researchers announce a major advancement in artificial intelligence that could revolutionize medical diagnosis and treatment.",
-    image: "https://via.placeholder.com/900x400/3b82f6/fff?text=AI+Healthcare",
-    category: "technology",
-    author: "John Smith",
-    date: "2 hours ago",
-    authorInitial: "JS",
-    fullContent: "<p>In a groundbreaking development, a team of researchers has unveiled a new artificial intelligence system that can diagnose complex medical conditions with unprecedented accuracy. The system, trained on millions of medical cases, can analyze patient data and imaging results in seconds.</p><h2>Key Achievements</h2><p>The AI system achieved a 99.2% accuracy rate in preliminary trials, surpassing the performance of experienced radiologists. This breakthrough could significantly reduce diagnostic errors and improve patient outcomes.</p><p>The technology is currently being tested in leading hospitals across the country, with plans for wider deployment within the next year.</p>",
-    tags: ["AI", "Healthcare", "Technology", "Medical"],
-    views: "45.2K"
-  },
-  {
-    id: 2,
-    title: "Stock Market Hits Record Highs",
-    description: "Global markets rally as investors show confidence in economic recovery and corporate earnings growth.",
-    image: "https://via.placeholder.com/900x400/10b981/fff?text=Stock+Market",
-    category: "business",
-    author: "Sarah Johnson",
-    date: "3 hours ago",
-    authorInitial: "SJ",
-    fullContent: "<p>Stock markets around the world reached all-time highs today as investors celebrated strong quarterly earnings reports and positive economic indicators. The rally was led by technology and financial sectors, with major indices gaining over 2% in trading.</p><h2>Market Analysis</h2><p>Analysts attribute the surge to growing consumer confidence, strong employment numbers, and easing inflation concerns. International markets also participated in the rally, with European and Asian exchanges posting significant gains.</p><p>Experts predict continued momentum as companies report strong revenue growth and maintain positive outlook for the coming year.</p>",
-    tags: ["Markets", "Business", "Economy", "Finance"],
-    views: "32.8K"
-  },
-  {
-    id: 3,
-    title: "Championship Team Wins Historic Victory",
-    description: "In an thrilling match, the home team clinches their first championship title in 25 years with a stunning comeback.",
-    image: "https://via.placeholder.com/900x400/f59e0b/fff?text=Sports+Championship",
-    category: "sports",
-    author: "Mike Wilson",
-    date: "4 hours ago",
-    authorInitial: "MW",
-    fullContent: "<p>In an unforgettable display of athletic prowess and determination, the home team secured their first championship title in 25 years with a dramatic comeback victory. The team, which was trailing by 15 points at halftime, mounted an impressive offensive surge to claim the trophy.</p><h2>Match Highlights</h2><p>The turning point came in the third quarter when the team's star player delivered an exceptional performance, leading multiple scoring drives and defensive plays. The final moments were filled with tension as the opposing team had one last chance to win, but the home team's defense held strong.</p><p>This victory marks a significant milestone for the franchise and its dedicated fan base who have waited decades for this championship moment.</p>",
-    tags: ["Sports", "Championship", "Athletic", "Victory"],
-    views: "58.5K"
-  },
-  {
-    id: 4,
-    title: "New Health Guidelines Released",
-    description: "Medical authorities release updated guidelines for healthy living with focus on mental health and wellness.",
-    image: "https://via.placeholder.com/900x400/ec4899/fff?text=Health+Guidelines",
-    category: "health",
-    author: "Dr. Emily Brown",
-    date: "5 hours ago",
-    authorInitial: "EB",
-    fullContent: "<p>Health authorities have released comprehensive new guidelines focused on promoting mental health and overall wellness. The guidelines emphasize the importance of balanced diet, regular exercise, and mental health awareness.</p><h2>Key Recommendations</h2><p>The updated guidelines recommend at least 150 minutes of moderate physical activity weekly, adequate sleep of 7-9 hours, and active stress management techniques. Mental health is now given equal importance to physical health in the new framework.</p><p>Healthcare providers worldwide are being encouraged to adopt these guidelines in their patient care programs and public health initiatives.</p>",
-    tags: ["Health", "Wellness", "Guidelines", "Medical"],
-    views: "28.3K"
-  },
-  {
-    id: 5,
-    title: "Blockbuster Movie Sets Box Office Records",
-    description: "The highly anticipated film breaks opening weekend records, becoming the fastest film to reach $100 million.",
-    image: "https://via.placeholder.com/900x400/8b5cf6/fff?text=Box+Office+Success",
-    category: "entertainment",
-    author: "Alex Turner",
-    date: "6 hours ago",
-    authorInitial: "AT",
-    fullContent: "<p>A highly anticipated blockbuster film has shattered box office records, becoming the fastest movie ever to cross the $100 million mark. The film earned $150 million domestically in its opening weekend, surpassing previous records set by major franchise films.</p><h2>Record-Breaking Performance</h2><p>The film's success is attributed to its compelling storyline, stellar cast performances, and positive critical reviews. Audiences have given it an exceptional rating, with many calling it a modern masterpiece.</p><p>Industry analysts predict the film will continue its strong performance in the coming weeks, potentially becoming one of the highest-grossing films of the year.</p>",
-    tags: ["Entertainment", "Movies", "Box Office", "Cinema"],
-    views: "41.7K"
-  },
-  {
-    id: 6,
-    title: "Tech Giant Launches Revolutionary Product",
-    description: "A major technology company unveils its latest innovation, promising to change how we interact with devices.",
-    image: "https://via.placeholder.com/900x400/06b6d4/fff?text=Tech+Innovation",
-    category: "technology",
-    author: "Lisa Chen",
-    date: "7 hours ago",
-    authorInitial: "LC",
-    fullContent: "<p>A leading technology company has announced its most ambitious product launch in recent years. The revolutionary device combines cutting-edge AI technology with intuitive user interface, promising to redefine consumer expectations for smart devices.</p><h2>Innovation Highlights</h2><p>The new product features advanced machine learning capabilities, seamless integration with existing ecosystems, and unprecedented processing power. Pre-orders have already exceeded initial projections by 300%.</p><p>The company plans to begin shipping units next month, with manufacturing already underway to meet the overwhelming demand from early adopters and technology enthusiasts.</p>",
-    tags: ["Technology", "Innovation", "Product Launch", "Tech"],
-    views: "52.1K"
-  },
-  {
-    id: 7,
-    title: "Economic Report Shows Strong Growth",
-    description: "Quarterly economic report indicates robust growth in employment and consumer spending across all sectors.",
-    image: "https://via.placeholder.com/900x400/14b8a6/fff?text=Economic+Growth",
-    category: "business",
-    author: "David Martinez",
-    date: "8 hours ago",
-    authorInitial: "DM",
-    fullContent: "<p>The latest quarterly economic report reveals robust growth across multiple sectors of the economy. Employment numbers hit record highs, with businesses adding over 500,000 jobs in the quarter. Consumer spending also showed strong performance, indicating healthy economic activity.</p><h2>Economic Indicators</h2><p>GDP growth exceeded expectations at 3.8%, driven by strong exports, business investments, and consumer confidence. Unemployment rates reached historic lows, while wage growth continued to outpace inflation.</p><p>Economists remain optimistic about sustained economic growth, though they caution about potential headwinds from global factors. Government officials have praised the positive economic trajectory.</p>",
-    tags: ["Economy", "Business", "Growth", "Employment"],
-    views: "36.2K"
-  },
-  {
-    id: 8,
-    title: "Olympic Games Begin with Opening Ceremony",
-    description: "Athletes from around the world gather for the opening ceremony of the international sporting event.",
-    image: "https://via.placeholder.com/900x400/f97316/fff?text=Olympic+Games",
-    category: "sports",
-    author: "James Anderson",
-    date: "9 hours ago",
-    authorInitial: "JA",
-    fullContent: "<p>The Olympic Games officially commenced with a spectacular opening ceremony that showcased the host nation's culture, history, and values. Athletes from over 200 countries participated in the parade of nations, marking the beginning of two weeks of world-class athletic competition.</p><h2>Ceremony Highlights</h2><p>The opening ceremony featured breathtaking performances, artistic displays, and a tribute to the Olympic spirit. World leaders and dignitaries attended the event, which was broadcast to billions of viewers worldwide.</p><p>Competition begins tomorrow across multiple venues, with athletes competing in dozens of sports. The host nation is expected to face fierce competition from traditionally strong countries in various disciplines.</p>",
-    tags: ["Sports", "Olympics", "Athletics", "Competition"],
-    views: "73.4K"
-  }
-];
-
-let currentCategory = 'all';
-
-// Initialize the app
-document.addEventListener('DOMContentLoaded', () => {
-  displayNews(newsData);
-  setupEventListeners();
-  setupArticleModal();
-});
-
-// Display news cards
-function displayNews(articles) {
-  const newsGrid = document.getElementById('newsGrid');
-  newsGrid.innerHTML = '';
-
-  articles.forEach(article => {
-    const newsCard = createNewsCard(article);
-    newsGrid.appendChild(newsCard);
-  });
+function dataInsert(){
+    let data = {
+    "status": "success",
+    "totalResults": 258,
+    "results": [
+        {
+            "article_id": "1004821bcad41743ef5698f96fd43158",
+            "link": "https://www.globenewswire.com/fr/news-release/2025/12/06/3201090/0/en/BioNTech-and-OncoC4-Announce-Clinically-Meaningful-Overall-Survival-Benefit-for-Selective-Treg-Modulator-Gotistobart-in-Patients-with-Previously-Treated-Squamous-Non-Small-Cell-Lun.html",
+            "title": "BioNTech and OncoC4 Announce Clinically Meaningful Overall Survival Benefit for Selective Treg Modulator Gotistobart in Patients with Previously Treated Squamous Non-Small Cell Lung Cancer",
+            "description": "Gotistobart demonstrated a clinically meaningful overall survival benefit compared to standard chemotherapy and a manageable safety profile in sqNSCLC",
+            "content": "ONLY AVAILABLE IN PAID PLANS",
+            "keywords": [
+                "us09075v1026",
+                "nasdaq:bntx"
+            ],
+            "creator": [
+                "BioNTech SE"
+            ],
+            "language": "english",
+            "country": [
+                "france"
+            ],
+            "category": [
+                "business"
+            ],
+            "datatype": "news",
+            "pubDate": "2025-12-06 20:30:00",
+            "pubDateTZ": "UTC",
+            "image_url": null,
+            "video_url": null,
+            "source_id": "globenewswire_fr",
+            "source_name": "Globenewswire_fr",
+            "source_priority": 2022,
+            "source_url": "https://www.globenewswire.com",
+            "source_icon": "https://n.bytvi.com/globenewswire_fr.jpg",
+            "sentiment": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "sentiment_stats": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_tag": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_region": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_org": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_summary": "ONLY AVAILABLE IN PAID PLANS",
+            "duplicate": false
+        },
+        {
+            "article_id": "5c6b54a09a97a197f9c696147b1a3af5",
+            "link": "https://www.benzinga.com/news/politics/25/12/49246706/elon-musk-says-he-warned-donald-trump-to-drop-tariffs-over-fears-of-job-losses-president-loves-tari",
+            "title": "Elon Musk Says He Warned Donald Trump To Drop Tariffs Over Fears of Job Losses: 'President Loves Tariffs, I've Tried To Dissuade Him'",
+            "description": "Elon Musk has said that he failed in his attempts to convince President Donald Trump to hold back on implementing tariffs. What Happened: During an interview, Musk voiced his concerns about the potential market distortions caused by tariffs, which could lead to a recession and an increase in the prices of goods. He discussed these issues in relation to Tesla‘s recent decision to stop orders for certain models in China, which was facing a retaliatory 125% tariff.Simultaneously, US manufacturers are linking Trump’s tariffs to industry contraction and job cuts, which is contrary to Trump’s goal of bringing back American factory jobs. The tariffs seem to be ...Full story available on Benzinga.com",
+            "content": "ONLY AVAILABLE IN PAID PLANS",
+            "keywords": [
+                "benzinga",
+                "news",
+                "us",
+                "tariff",
+                "china",
+                "top stories",
+                "donald trump",
+                "politics",
+                "elon musk"
+            ],
+            "creator": [
+                "Bibhu Pattnaik"
+            ],
+            "language": "english",
+            "country": [
+                "united states of america"
+            ],
+            "category": [
+                "politics"
+            ],
+            "datatype": "news",
+            "pubDate": "2025-12-06 20:24:04",
+            "pubDateTZ": "UTC",
+            "image_url": "https://cdn.benzinga.com/files/images/story/2025/12/06/Donald-Trumps-Conversation-With-Elon-Mus.jpeg?auto=jpg&dpr=1&fit=crop&height=480&optimize=medium&width=720",
+            "video_url": null,
+            "source_id": "benzinga",
+            "source_name": "Benzinga",
+            "source_priority": 2050,
+            "source_url": "https://www.benzinga.com",
+            "source_icon": "https://n.bytvi.com/benzinga.png",
+            "sentiment": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "sentiment_stats": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_tag": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_region": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_org": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_summary": "ONLY AVAILABLE IN PAID PLANS",
+            "duplicate": false
+        },
+        {
+            "article_id": "4bb8b5da67818a4606c0cf117c7538ff",
+            "link": "https://www.hindustantimes.com/world-news/us-news/mexicos-sheinbaum-holds-huge-rally-following-major-protests-101765052295168.html",
+            "title": "Mexico's Sheinbaum holds huge rally following major protests",
+            "description": "Mexico's Sheinbaum holds huge rally following major protests",
+            "content": "ONLY AVAILABLE IN PAID PLANS",
+            "keywords": [
+                "world-news/us-news"
+            ],
+            "creator": [
+                "httweets"
+            ],
+            "language": "english",
+            "country": [
+                "india"
+            ],
+            "category": [
+                "world"
+            ],
+            "datatype": "news",
+            "pubDate": "2025-12-06 20:18:14",
+            "pubDateTZ": "UTC",
+            "image_url": "https://www.hindustantimes.com/ht-img/img/2025/07/10/1600x900/logo/us_news1_1752146559335_1752146580548.png",
+            "video_url": null,
+            "source_id": "hindustantimes",
+            "source_name": "Hindustan Times",
+            "source_priority": 2173,
+            "source_url": "http://www.hindustantimes.com",
+            "source_icon": "https://n.bytvi.com/hindustantimes.png",
+            "sentiment": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "sentiment_stats": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_tag": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_region": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_org": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_summary": "ONLY AVAILABLE IN PAID PLANS",
+            "duplicate": false
+        },
+        {
+            "article_id": "55a9918cd570577c03aadd6a4b132e43",
+            "link": "https://www.livemint.com/us/trending/untitled-trump-pulled-off-his-ymca-dance-fifa-draw-then-told-carney-and-sheinbaum-this-11765049951796.html",
+            "title": "Untitled Trump pulled off his ‘YMCA’ dance FIFA Draw — Then told Carney and Sheinbaum THIS",
+            "description": "At the World Cup 2026 draw, Trump told, as per a lip reader, Canadian PM Mark Carney and Mexican President Claudia Sheinbaum that he loves the Village People, saying, “I love this” and “They make me happy” while dancing to “YMCA.”",
+            "content": "ONLY AVAILABLE IN PAID PLANS",
+            "keywords": null,
+            "creator": [
+                "Ravi Hari"
+            ],
+            "language": "english",
+            "country": [
+                "india"
+            ],
+            "category": [
+                "sports",
+                "top"
+            ],
+            "datatype": "news",
+            "pubDate": "2025-12-06 19:57:14",
+            "pubDateTZ": "UTC",
+            "image_url": "https://www.livemint.com/lm-img/img/2025/12/06/1600x900/logo/WCup-Draw-Soccer-268_1765050292680_1765050309374.jpg",
+            "video_url": null,
+            "source_id": "livemint",
+            "source_name": "Mint",
+            "source_priority": 7134,
+            "source_url": "https://www.livemint.com",
+            "source_icon": "https://n.bytvi.com/livemint.png",
+            "sentiment": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "sentiment_stats": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_tag": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_region": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_org": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_summary": "ONLY AVAILABLE IN PAID PLANS",
+            "duplicate": false
+        },
+        {
+            "article_id": "861469d158bca07cd8e0e93a83bb6858",
+            "link": "https://time.com/7339171/trump-national-security-strategy-europe/",
+            "title": "Trump’s National Security Strategy Sparks European Backlash Over ‘Far-Right’ Rhetoric. Here’s What It Says",
+            "description": "The strategy calls for asserting U.S. dominance in the Western Hemisphere and 'cultivating resistance to Europe’s current trajectory.'",
+            "content": "ONLY AVAILABLE IN PAID PLANS",
+            "keywords": [
+                "donald trump",
+                "uncategorized",
+                "news",
+                "news desk"
+            ],
+            "creator": [
+                "Connor Greene and Rebecca Schneid"
+            ],
+            "language": "english",
+            "country": [
+                "united states of america"
+            ],
+            "category": [
+                "politics",
+                "top"
+            ],
+            "datatype": "news",
+            "pubDate": "2025-12-06 19:53:57",
+            "pubDateTZ": "UTC",
+            "image_url": "https://api.time.com/wp-content/uploads/2025/10/GettyImages-2198761888.jpg?h=675&w=1200",
+            "video_url": null,
+            "source_id": "time",
+            "source_name": "Time",
+            "source_priority": 432,
+            "source_url": "https://time.com",
+            "source_icon": "https://n.bytvi.com/time.png",
+            "sentiment": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "sentiment_stats": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_tag": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_region": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_org": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_summary": "ONLY AVAILABLE IN PAID PLANS",
+            "duplicate": false
+        },
+        {
+            "article_id": "91e400ed06bddf9aa0384b09a62a990a",
+            "link": "https://financialpost.com/pmn/business-pmn/us-loses-financing-edge-as-asia-borrows-in-euros-credit-weekly",
+            "title": "US Loses Financing Edge as Asia Borrows in Euros: Credit Weekly",
+            "description": "Asian economies aren’t just shifting their trading ties to fight against US tariffs, they’re also increasingly moving their financing to other markets, underscoring how President Donald Trump’s policies risk eroding American dominance of capital raising.",
+            "content": "ONLY AVAILABLE IN PAID PLANS",
+            "keywords": [
+                "bloom",
+                "canada",
+                "pmn business"
+            ],
+            "creator": [
+                "Bloomberg News"
+            ],
+            "language": "english",
+            "country": [
+                "canada"
+            ],
+            "category": [
+                "top",
+                "business"
+            ],
+            "datatype": "news",
+            "pubDate": "2025-12-06 18:57:57",
+            "pubDateTZ": "UTC",
+            "image_url": "https://smartcdn.gprod.postmedia.digital/financialpost/wp-content/uploads/2025/12/several-asian-firms-can-get-cheaper-funding-in-euros-cost-a.jpg",
+            "video_url": null,
+            "source_id": "financialpost",
+            "source_name": "Financial Post",
+            "source_priority": 7235,
+            "source_url": "https://financialpost.com",
+            "source_icon": "https://n.bytvi.com/financialpost.png",
+            "sentiment": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "sentiment_stats": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_tag": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_region": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_org": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_summary": "ONLY AVAILABLE IN PAID PLANS",
+            "duplicate": false
+        },
+        {
+            "article_id": "d093900a0d1415bd85c47f47e44a49ea",
+            "link": "https://www.timesnownews.com/world/europe/elon-musk-eu-everything-about-european-unions-120-million-fine-on-x-that-triggered-geopolitical-row-article-153256175",
+            "title": "Musk Vs. EU: Everything About European Union's €120 Million Fine On X That Triggered Geopolitical Row",
+            "description": "The EU has fined Elon Musk’s platform X €120 million for violating the Digital Services Act, citing deceptive paid blue checkmarks, insufficient ad transparency, and restricted researcher access to public data.",
+            "content": "ONLY AVAILABLE IN PAID PLANS",
+            "keywords": [
+                "why did eu fine x",
+                "elon musk eu",
+                "elon musk x eu",
+                "eu",
+                "eu fine x",
+                "musk",
+                "musk abolish eu",
+                "european union",
+                "eu fines x",
+                "eu fine twitter"
+            ],
+            "creator": [
+                "Naman Trivedi"
+            ],
+            "language": "english",
+            "country": [
+                "india"
+            ],
+            "category": [
+                "top",
+                "business"
+            ],
+            "datatype": "news",
+            "pubDate": "2025-12-06 18:49:10",
+            "pubDateTZ": "UTC",
+            "image_url": "https://images.timesnownews.com/thumb/msid-153256175,imgsize-1289497,width-1280,height-720/153256175.jpg",
+            "video_url": null,
+            "source_id": "timesnownews",
+            "source_name": "Times Now News",
+            "source_priority": 2243,
+            "source_url": "https://www.timesnownews.com",
+            "source_icon": "https://n.bytvi.com/timesnownews.png",
+            "sentiment": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "sentiment_stats": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_tag": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_region": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_org": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_summary": "ONLY AVAILABLE IN PAID PLANS",
+            "duplicate": false
+        },
+        {
+            "article_id": "c4f202e7985eb39376aa6a132f8c75ba",
+            "link": "https://ca.news.yahoo.com/musk-eu-must-abolished-181758385.html",
+            "title": "Musk: EU must be abolished",
+            "description": "Elon Musk has called for the EU to be “abolished” after the bloc fined his social media platform X €120m (£105m).",
+            "content": "ONLY AVAILABLE IN PAID PLANS",
+            "keywords": [
+                "news"
+            ],
+            "creator": [
+                "The Telegraph"
+            ],
+            "language": "english",
+            "country": [
+                "canada"
+            ],
+            "category": [
+                "sports"
+            ],
+            "datatype": "news",
+            "pubDate": "2025-12-06 18:17:58",
+            "pubDateTZ": "UTC",
+            "image_url": "https://s.yimg.com/ny/api/res/1.2/aLAMeWq_nlSfWKJqb4SlWg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyNDI7aD03NzY7Y2Y9d2VicA--/https://media.zenfs.com/en/the_telegraph_818/1a259c10d96df6b3478b2a92c88a6317",
+            "video_url": null,
+            "source_id": "yahoo",
+            "source_name": "Yahoo! News",
+            "source_priority": 17,
+            "source_url": "https://news.yahoo.com",
+            "source_icon": "https://n.bytvi.com/yahoo.png",
+            "sentiment": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "sentiment_stats": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_tag": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_region": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_org": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_summary": "ONLY AVAILABLE IN PAID PLANS",
+            "duplicate": false
+        },
+        {
+            "article_id": "f9478a663cff09f53b1c537f284ebc59",
+            "link": "https://www.smh.com.au/national/when-will-the-australia-us-critical-minerals-deal-bear-fruit-let-s-ask-a-player-20251205-p5nl6z.html",
+            "title": "When will the Australia/US critical minerals deal bear fruit? Let’s ask a player",
+            "description": "We signed a deal with the US two months ago. But very few projects are under way.",
+            "content": "ONLY AVAILABLE IN PAID PLANS",
+            "keywords": [
+                "national"
+            ],
+            "creator": [
+                "Peter FitzSimons"
+            ],
+            "language": "english",
+            "country": [
+                "australia"
+            ],
+            "category": [
+                "top",
+                "business"
+            ],
+            "datatype": "news",
+            "pubDate": "2025-12-06 18:00:00",
+            "pubDateTZ": "UTC",
+            "image_url": "https://static.ffx.io/images/$zoom_0.5171,$multiply_0.7554,$ratio_1.777778,$width_1059,$x_0,$y_7/t_crop_custom/q_86,f_auto/9d70b3c03e95825f8226b22c58e268307e5156c4",
+            "video_url": null,
+            "source_id": "smh",
+            "source_name": "The Sydney Morning Herald",
+            "source_priority": 2251,
+            "source_url": "https://www.smh.com.au",
+            "source_icon": "https://n.bytvi.com/smh.png",
+            "sentiment": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "sentiment_stats": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_tag": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_region": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_org": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_summary": "ONLY AVAILABLE IN PAID PLANS",
+            "duplicate": false
+        },
+        {
+            "article_id": "d72d11b217c02290f7ccae453d9a0249",
+            "link": "https://nationalpost.com/news/trump-forced-canada-to-scrap-its-digital-services-tax-but-did-he-save-carney-from-bad-policy",
+            "title": "Trump forced Canada to scrap its digital services tax — but did he save Carney from bad policy?",
+            "description": "Adam Michel thinks that Trump did Carney and Canada a favour because DSTs hurt countries that impose them",
+            "content": "ONLY AVAILABLE IN PAID PLANS",
+            "keywords": [
+                "news"
+            ],
+            "creator": [
+                "Tracy Moran"
+            ],
+            "language": "english",
+            "country": [
+                "canada"
+            ],
+            "category": [
+                "world"
+            ],
+            "datatype": "news",
+            "pubDate": "2025-12-06 17:40:35",
+            "pubDateTZ": "UTC",
+            "image_url": "https://smartcdn.gprod.postmedia.digital/nationalpost/wp-content/uploads/2025/12/trump-mideast-wars-gaza_299492066.jpg?h=216&quality=90&sig=zPEc9B4tIyVd5-18mEJeUQ&strip=all&w=288",
+            "video_url": null,
+            "source_id": "nationalpost",
+            "source_name": "National Post",
+            "source_priority": 4846,
+            "source_url": "https://nationalpost.com",
+            "source_icon": "https://n.bytvi.com/nationalpost.png",
+            "sentiment": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "sentiment_stats": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_tag": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
+            "ai_region": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_org": "ONLY AVAILABLE IN CORPORATE PLANS",
+            "ai_summary": "ONLY AVAILABLE IN PAID PLANS",
+            "duplicate": false
+        }
+    ],
+    "nextPage": "1765042835483376994"
 }
 
-// Create a news card element
-function createNewsCard(article) {
-  const card = document.createElement('div');
-  card.className = 'news-card';
-  card.innerHTML = `
+let newsGrid = document.querySelector("#newsGrid")
+let sum = ""
+data.results.forEach(elm => {
+    sum += `
     
-    <img src="https://images.unsplash.com/photo-1764893216863-f4e2bbd62a5e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D}" alt="${article.title}" class="news-card-image">
+    <div class="news-card">
+    <img src="${elm.image_url===null? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNK7-n-r_w_qCEIjsnu8VXMBamUkSmLUr9Eg&s" : elm.image_url}" alt="${elm.title}" class="news-card-image">
     <div class="news-card-content">
-      <span class="news-card-category">${article.category.toUpperCase()}</span>
-      <h3 class="news-card-title">${article.title}</h3>
-      <p class="news-card-description">${article.description}</p>
+      <span class="news-card-category">${elm.category[0].toUpperCase()}</span>
+      <h3 class="news-card-title">${elm.title}</h3>
+      <p class="news-card-description">${elm.description}</p>
       <div class="news-card-footer">
         <div class="news-card-author">
-          <div class="news-card-author-avatar">${article.authorInitial}</div>
-          <span>${article.author}</span>
+          <div class="news-card-author-avatar">${elm.source_name.split("")[0]}</div>
+          <span>${elm.source_name}</span>
         </div>
-        <span class="news-card-time">${article.date}</span>
+        <span class="news-card-time">${elm.pubDate.split(" ")[0]}</span>
       </div>
-    </div>
-  `;
-  
-  card.addEventListener('click', () => openArticle(article));
-  return card;
+      </div>
+      </div>`
+
+})
+
+newsGrid.innerHTML = sum
 }
+dataInsert()
+console.log();
 
-// Setup event listeners
-function setupEventListeners() {
-  // Category navigation
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      
-      // Update active link
-      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      
-      // Filter news
-      currentCategory = link.dataset.category;
-      filterNews();
-    });
-  });
 
-  // Search functionality
-  const searchBtn = document.getElementById('searchBtn');
-  const searchInput = document.getElementById('searchInput');
-
-  searchBtn.addEventListener('click', performSearch);
-  searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') performSearch();
-  });
-
-  // Subscribe form
-  document.getElementById('subscribeForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = e.target.querySelector('input[type="email"]').value;
-    alert(`Thank you for subscribing with: ${email}`);
-    e.target.reset();
-  });
-
-  // Trending items
-  document.querySelectorAll('.trending-item').forEach(item => {
-    item.addEventListener('click', () => {
-      alert('Loading trending article...');
-    });
-  });
-}
-
-// Setup article modal
-function setupArticleModal() {
-  const modal = document.getElementById('articleModal');
-  const closeBtn = document.getElementById('closeArticle');
-  const overlay = document.querySelector('.article-modal-overlay');
-
-  closeBtn.addEventListener('click', closeArticle);
-  overlay.addEventListener('click', closeArticle);
-
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-      closeArticle();
-    }
-  });
-}
-
-// Open article modal
-function openArticle(article) {
-  const modal = document.getElementById('articleModal');
-  
-  // Set article data
-//   document.getElementById('articleImage').src = article.image;
-  document.getElementById('articleImage').src = "https://images.unsplash.com/photo-1764893216863-f4e2bbd62a5e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-  document.getElementById('articleCategory').textContent = article.category.toUpperCase();
-  document.getElementById('articleTitle').textContent = article.title;
-  document.getElementById('articleAuthor').textContent = article.author;
-  document.getElementById('articleDate').textContent = article.date;
-  document.getElementById('articleAuthorAvatar').textContent = article.authorInitial;
-  document.getElementById('articleDescription').textContent = article.description;
-  document.getElementById('articleContent').innerHTML = article.fullContent;
-
-  // Set tags
-  const tagsContainer = document.getElementById('articleTagsContainer');
-  tagsContainer.innerHTML = '';
-  article.tags.forEach(tag => {
-    const tagElement = document.createElement('span');
-    tagElement.className = 'article-tag';
-    tagElement.textContent = tag;
-    tagsContainer.appendChild(tagElement);
-  });
-
-  // Set related articles
-  const relatedContainer = document.getElementById('relatedArticles');
-  relatedContainer.innerHTML = '';
-  const relatedArticles = newsData.filter(a => a.category === article.category && a.id !== article.id).slice(0, 3);
-  
-  if (relatedArticles.length === 0) {
-    relatedContainer.innerHTML = '<p style="color: var(--text-light);">No related articles found.</p>';
-  } else {
-    relatedArticles.forEach(relArticle => {
-      const relatedItem = document.createElement('div');
-      relatedItem.className = 'related-article-item';
-      relatedItem.innerHTML = `
-        <h4>${relArticle.title}</h4>
-        <p>${relArticle.description.substring(0, 80)}...</p>
-      `;
-      relatedItem.addEventListener('click', () => {
-        openArticle(relArticle);
-        document.querySelector('.article-modal-content').scrollTop = 0;
-      });
-      relatedContainer.appendChild(relatedItem);
-    });
-  }
-
-  // Show modal
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-// Close article modal
-function closeArticle() {
-  const modal = document.getElementById('articleModal');
-  modal.classList.remove('active');
-  document.body.style.overflow = 'auto';
-}
-
-// Filter news by category
-function filterNews() {
-  if (currentCategory === 'all') {
-    displayNews(newsData);
-  } else {
-    const filtered = newsData.filter(article => article.category === currentCategory);
-    displayNews(filtered);
-  }
-}
-
-// Perform search
-function performSearch() {
-  const searchInput = document.getElementById('searchInput');
-  const searchTerm = searchInput.value.toLowerCase();
-
-  if (searchTerm.trim() === '') {
-    filterNews();
-    return;
-  }
-
-  const filtered = newsData.filter(article => 
-    article.title.toLowerCase().includes(searchTerm) ||
-    article.description.toLowerCase().includes(searchTerm) ||
-    article.category.toLowerCase().includes(searchTerm)
-  );
-
-  displayNews(filtered);
-}
