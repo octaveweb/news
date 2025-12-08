@@ -945,4 +945,8 @@ html, body {
   .container {
     gap: 0;
   }
+  .article-modal-content::-webkit-scrollbar {
+  width: 0px;
+}
+
 }/*# sourceMappingURL=style.css.map */
