@@ -471,12 +471,12 @@ dataInsert()
 let domNewsFeed = document.querySelectorAll(".news-card")
 let modal = document.querySelector("#articleModal")
 let modalData = ""
-domNewsFeed.forEach((elm,index) => {
+domNewsFeed.forEach((elm, index) => {
 
     elm.addEventListener("click", () => {
         modal.classList.add("active");
         let news = data.results[elm.id]
-        let res = data.results[index+1]
+        let res = data.results[index]
         console.log(res);
 
         modalData = `<div class="article-modal-overlay"></div>
@@ -489,7 +489,7 @@ domNewsFeed.forEach((elm,index) => {
                   
                     <img id="articleImage" src="${news.image_url === null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNK7-n-r_w_qCEIjsnu8VXMBamUkSmLUr9Eg&s" : news.image_url}" alt="${news.title}" class="article-image">
                     <div class="article-header-content">
-                        <span id="articleCategory" class="article-badge">${news.category[0].toUpperCase()}</span>
+                      
                         <h1 id="articleTitle" class="article-title">${news.title}</h1>
                         <div class="article-meta">
                             <div class="article-author-info">
@@ -512,8 +512,10 @@ domNewsFeed.forEach((elm,index) => {
                 </div>
 
                 <div class="article-body">
+                                  <span id="articleCategory" class="article-badge" style="margin-bottom: 0.75rem;">${news.category[0].toUpperCase()}</span>
+
                     <div id="articleDescription" class="article-description">${news.title}</div>
-                    <div id="articleContent" class="article-content">${news.description}</div>
+                    <div id="articleContent" class="article-content">${news.description}  <a href="${res.link}">more</a></div>
                 </div>
 
                 <div class="article-footer">
@@ -523,7 +525,8 @@ domNewsFeed.forEach((elm,index) => {
                     </div>
                     <div class="article-related">
                         <h3>Related Articles</h3>
-                        <div id="relatedArticles" class="related-articles-list">${res.title}</div>
+                        <a id="relatedArticles" class="related-articles-list" href="${res.link}">${res.title}</a>
+
                     </div>
                 </div>
             </div>

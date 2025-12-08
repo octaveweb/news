@@ -730,7 +730,6 @@ html, body {
   justify-content: space-between;
   align-items: center;
   padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .article-author-info {
@@ -920,6 +919,7 @@ html, body {
   }
   .article-title {
     font-size: 1.6rem;
+    display: none;
   }
   .article-header-content {
     padding: 2rem 1rem;
