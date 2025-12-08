@@ -1,5 +1,5 @@
-function dataInsert(){
-    let data = {
+let data = {
+
     "status": "success",
     "totalResults": 258,
     "results": [
@@ -403,16 +403,19 @@ function dataInsert(){
     "nextPage": "1765042835483376994"
 }
 
-let newsGrid = document.querySelector("#newsGrid")
-let sum = ""
-data.results.forEach(elm => {
-    sum += `
+function dataInsert() {
+
+    // News Feed data add
+    let newsGrid = document.querySelector("#newsGrid")
+    let newsFeedData = ""
+    data.results.forEach((elm, ind) => {
+        newsFeedData += `
     
-    <div class="news-card">
-    <img src="${elm.image_url===null? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNK7-n-r_w_qCEIjsnu8VXMBamUkSmLUr9Eg&s" : elm.image_url}" alt="${elm.title}" class="news-card-image">
+    <div class="news-card" id=${ind}>
+    <img src="${elm.image_url === null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNK7-n-r_w_qCEIjsnu8VXMBamUkSmLUr9Eg&s" : elm.image_url}" alt="${elm.title}" class="news-card-image">
     <div class="news-card-content">
       <span class="news-card-category">${elm.category[0].toUpperCase()}</span>
-      <h3 class="news-card-title">${elm.title}</h3>
+      <h3 class="news-card-title">${elm.title.split(" ").slice(0, 7).join(" ") + "..."}</h3>
       <p class="news-card-description">${elm.description}</p>
       <div class="news-card-footer">
         <div class="news-card-author">
@@ -424,11 +427,125 @@ data.results.forEach(elm => {
       </div>
       </div>`
 
-})
 
-newsGrid.innerHTML = sum
+    })
+    newsGrid.innerHTML = newsFeedData
+
+
+
+    // Tags Contener Add
+    let uniqueCategories = new Set();
+    data.results.forEach(elm => {
+        if (Array.isArray(elm.category)) {
+            elm.category.forEach(c => uniqueCategories.add(c));
+        } else {
+            uniqueCategories.add(elm.category);
+        }
+    });
+
+    let category = [...uniqueCategories]
+    let tags_con = document.getElementById("tags")
+    haslist = ""
+    category.filter((e) => {
+
+        let hasTag = "#";
+        hasTag += e
+
+
+        haslist += `<a href="#" class="tag" style="text-transform: capitalize;">${hasTag}</a>`
+
+
+
+
+    })
+    tags_con.innerHTML = haslist
+
+
+
+    // console.log(data.results[0].category);
+
+
 }
 dataInsert()
-console.log();
+
+let domNewsFeed = document.querySelectorAll(".news-card")
+let modal = document.querySelector("#articleModal")
+let modalData = ""
+domNewsFeed.forEach((elm,index) => {
+
+    elm.addEventListener("click", () => {
+        modal.classList.add("active");
+        let news = data.results[elm.id]
+        let res = data.results[index+1]
+        console.log(res);
+
+        modalData = `<div class="article-modal-overlay"></div>
+        <div class="article-modal-content">
+            <button class="article-close-btn" id="closeArticle">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="article-container">
+                <div class="article-header">
+                  
+                    <img id="articleImage" src="${news.image_url === null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNK7-n-r_w_qCEIjsnu8VXMBamUkSmLUr9Eg&s" : news.image_url}" alt="${news.title}" class="article-image">
+                    <div class="article-header-content">
+                        <span id="articleCategory" class="article-badge">${news.category[0].toUpperCase()}</span>
+                        <h1 id="articleTitle" class="article-title">${news.title}</h1>
+                        <div class="article-meta">
+                            <div class="article-author-info">
+                                <div id="articleAuthorAvatar" class="article-avatar">${news.source_name.split("")[0]}</div>
+                                <div>
+                                    <p id="articleAuthor" class="article-author">${news.source_name}</p>
+                                    <p id="articleDate" class="article-date">${news.pubDate.split(" ").join(" | ")}</p>
+                                </div>
+                            </div>
+                            <div class="article-actions">
+                                <button class="article-action-btn" id="shareBtn" title="Share">
+                                    <i class="fas fa-share-alt"></i> Share
+                                </button>
+                                <button class="article-action-btn" id="bookmarkBtn" title="Bookmark">
+                                    <i class="fas fa-bookmark"></i> Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-body">
+                    <div id="articleDescription" class="article-description">${news.title}</div>
+                    <div id="articleContent" class="article-content">${news.description}</div>
+                </div>
+
+                <div class="article-footer">
+                    <div class="article-tags">
+                        <h3>Tags:</h3>
+                        <div id="articleTagsContainer" class="article-tags-list">${news.category}</div>
+                    </div>
+                    <div class="article-related">
+                        <h3>Related Articles</h3>
+                        <div id="relatedArticles" class="related-articles-list">${res.title}</div>
+                    </div>
+                </div>
+            </div>
+        </div>`
+
+
+
+        modal.innerHTML = modalData
+
+
+        let closeArticle = document.querySelector("#closeArticle")
+        closeArticle.addEventListener("click", () => {
+            modal.classList.remove("active");
+        })
+        document.querySelector(".article-modal-overlay").addEventListener("click", () => {
+            modal.classList.remove("active");
+        })
+    })
+})
+
+
+
+
 
 
