@@ -193,7 +193,7 @@ function getNewsData() {
     }
 
     // API fetch (cache expired or not available)
-    const apikey = "pub_9eb027e16d5249ff921c4d8bd079be3d";
+    const apikey = "pub_49f6815f3ccb4d14af873a72d9429bdf";
     const url = `https://newsdata.io/api/1/latest?apikey=${apikey}&q=US%20tariffs&prioritydomain=top`;
 
     fetch(url)

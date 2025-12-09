@@ -75,7 +75,7 @@ Here is your updated **README section for `getNewsData()`**, fully rewritten to 
 
 ## 🔑 API Key Note
 
-The current code uses an API key (`pub_9eb027e16d5249ff921c4d8bd079be3d`) directly in the client-side JavaScript. For production applications, it is highly recommended to use an environment variable or a secure backend service to proxy API requests to protect your key.
+The current code uses an API key (`xyz`) directly in the client-side JavaScript. For production applications, it is highly recommended to use an environment variable or a secure backend service to proxy API requests to protect your key.
 
 ## 🔧 Installation and Setup
 
