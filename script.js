@@ -174,25 +174,25 @@ function topCardData(data) {
 function getNewsData() {
     const cacheKey = "newsCache";
     const timeKey = "newsCacheTime";
-    const expiryTime = 30 * 60 * 1000; // 30 minutes (in milliseconds)
+    const expiryTime = 30 * 60 * 1000; // 30 minutes
 
     const cachedData = localStorage.getItem(cacheKey);
     const cachedTime = localStorage.getItem(timeKey);
-
     const now = Date.now();
 
-    // Check if cached data exists and is not expired
     if (cachedData && cachedTime && (now - cachedTime < expiryTime)) {
         const data = JSON.parse(cachedData);
-        // console.log("Using LocalStorage Data");
+
+        // Update time on interaction
+        localStorage.setItem(timeKey, now);
+
         dataInsert(data);
         modalOpen(data);
         topCardData(data);
         return;
     }
 
-    // If no cache or expired → Call API
-    // console.log("Fetching Fresh API Data...");
+    // API fetch (cache expired or not available)
     const apikey = "pub_9eb027e16d5249ff921c4d8bd079be3d";
     const url = `https://newsdata.io/api/1/latest?apikey=${apikey}&q=US%20tariffs&prioritydomain=top`;
 
@@ -201,7 +201,7 @@ function getNewsData() {
         .then(newsFeedData => {
             const data = newsFeedData.results;
 
-            // Save data to localStorage
+            // Store fresh data + new time
             localStorage.setItem(cacheKey, JSON.stringify(data));
             localStorage.setItem(timeKey, now);
 
@@ -211,6 +211,7 @@ function getNewsData() {
         })
         .catch(err => console.error(err));
 }
+
 
 getNewsData();
 

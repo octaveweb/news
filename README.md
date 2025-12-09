@@ -20,15 +20,35 @@ You can view the live application here:
 
 The application's logic is encapsulated within several clear and purposeful JavaScript functions:
 
+Here is your updated **README section for `getNewsData()`**, fully rewritten to match the **new sliding-expiry caching logic** in your code 👇
+
+---
+
 ### 1. `getNewsData()`
 
-* **Primary Function:** Orchestrates the data fetching process.
-* **Caching Logic:**
-    * Checks `localStorage` for cached news data (`newsCache`) and its timestamp (`newsCacheTime`).
-    * If the cache is less than **30 minutes** old, it uses the cached data.
-    * If the cache is expired or non-existent, it fetches fresh data from the NewsData.io API (`https://newsdata.io/api/1/latest`).
-* **Post-Fetch:** Stores the new data and current timestamp in `localStorage`.
-* **Data Flow:** Calls `dataInsert()`, `topCardData()`, and `modalOpen()` with the retrieved data.
+* **Primary Function:** Handles retrieving news data either from cache or API.
+* **Smart Sliding Cache Logic:**
+
+  * Checks `localStorage` for:
+
+    * Cached news data → `newsCache`
+    * Saved timestamp → `newsCacheTime`
+  * If cached data exists **and** the user has been active within the last **30 minutes**,
+    it uses cached data and **refreshes the timestamp** to extend cache life.
+  * If the data is missing or inactive for **30+ minutes**, it fetches fresh news from the
+    NewsData.io API (`https://newsdata.io/api/1/latest`) and updates the cache.
+* **Post Fetch / Cache Use:**
+
+  * Calls the UI rendering functions:
+
+    * `dataInsert(data)` → Displays news cards
+    * `modalOpen(data)` → Enables modal view on click
+    * `topCardData(data)` → Shows the featured news card
+* **Goal:**
+  Minimize API usage while always keeping news updated when the user returns after inactivity.
+
+
+
 
 ### 2. `newsFeed(data)`
 
