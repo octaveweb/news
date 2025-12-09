@@ -205,7 +205,7 @@ function getNewsData() {
             localStorage.setItem(cacheKey, JSON.stringify(data));
             localStorage.setItem(timeKey, now);
 
-            dataInsert(data);
+            newsFeed(data);
             modalOpen(data);
             topCardData(data);
         })
