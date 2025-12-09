@@ -80,6 +80,7 @@ function modalOpen(data) {
     domNewsFeed.forEach((elm, index) => {
 
         elm.addEventListener("click", () => {
+            document.body.style.overflow = "hidden"
             modal.classList.add("active");
             let news = data[elm.id]
             let res = data[index]
@@ -145,9 +146,11 @@ function modalOpen(data) {
             let closeArticle = document.querySelector("#closeArticle")
             closeArticle.addEventListener("click", () => {
                 modal.classList.remove("active");
+                document.body.style.overflow = "scroll"
             })
             document.querySelector(".article-modal-overlay").addEventListener("click", () => {
                 modal.classList.remove("active");
+                document.body.style.overflow = "scroll"
             })
         })
     })
