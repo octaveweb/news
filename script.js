@@ -1,6 +1,6 @@
 
 
-function dataInsert(data) {
+function newsFeed(data) {
 
     // News Feed data add
     let newsGrid = document.querySelector("#newsGrid")
