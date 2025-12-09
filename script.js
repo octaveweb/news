@@ -34,7 +34,7 @@ function dataInsert(data) {
     newsGrid.innerHTML = newsFeedData
 
     let domNewsGrid = document.querySelectorAll(".news-card");
-    console.log(domNewsGrid);
+    // console.log(domNewsGrid);
 
     // Tags Contener Add
     let uniqueCategories = new Set();
@@ -184,7 +184,7 @@ function getNewsData() {
     // Check if cached data exists and is not expired
     if (cachedData && cachedTime && (now - cachedTime < expiryTime)) {
         const data = JSON.parse(cachedData);
-        console.log("Using LocalStorage Data");
+        // console.log("Using LocalStorage Data");
         dataInsert(data);
         modalOpen(data);
         topCardData(data);
@@ -192,7 +192,7 @@ function getNewsData() {
     }
 
     // If no cache or expired → Call API
-    console.log("Fetching Fresh API Data...");
+    // console.log("Fetching Fresh API Data...");
     const apikey = "pub_9eb027e16d5249ff921c4d8bd079be3d";
     const url = `https://newsdata.io/api/1/latest?apikey=${apikey}&q=US%20tariffs&prioritydomain=top`;
 
