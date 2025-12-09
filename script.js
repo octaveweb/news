@@ -33,9 +33,9 @@ function dataInsert(data) {
     })
     newsGrid.innerHTML = newsFeedData
 
-    let domNewsGrid = document.querySelectorAll(".news-card") ;
+    let domNewsGrid = document.querySelectorAll(".news-card");
     console.log(domNewsGrid);
-    
+
     // Tags Contener Add
     let uniqueCategories = new Set();
     data.forEach(elm => {
@@ -154,25 +154,63 @@ function modalOpen(data) {
 
 }
 
+function topCardData(data) {
+
+    let topCard = document.getElementById("featuredCard")
 
 
+    let content = `<img src="${data[0].image_url}" alt="Featured Story">
+    <div class="featured-content">
+                <span class="featured-badge">BREAKING</span>
+                <h2>${data[0].title}</h2>
+                <p>${data[0].description}</p>
+                <a href="${data[0].link}" target="_blank" class="read-more">Read Full Story</a>
+            </div>`
 
+    topCard.innerHTML = content
+    
+
+}
 function getNewsData() {
-    let data = "";
-    const apikey = "pub_9eb027e16d5249ff921c4d8bd079be3d"
+    const cacheKey = "newsCache";
+    const timeKey = "newsCacheTime";
+    const expiryTime = 30 * 60 * 1000; // 30 minutes (in milliseconds)
+
+    const cachedData = localStorage.getItem(cacheKey);
+    const cachedTime = localStorage.getItem(timeKey);
+
+    const now = Date.now();
+
+    // Check if cached data exists and is not expired
+    if (cachedData && cachedTime && (now - cachedTime < expiryTime)) {
+        const data = JSON.parse(cachedData);
+        console.log("Using LocalStorage Data");
+        dataInsert(data);
+        modalOpen(data);
+        topCardData(data);
+        return;
+    }
+
+    // If no cache or expired → Call API
+    console.log("Fetching Fresh API Data...");
+    const apikey = "pub_9eb027e16d5249ff921c4d8bd079be3d";
     const url = `https://newsdata.io/api/1/latest?apikey=${apikey}&q=US%20tariffs&prioritydomain=top`;
 
     fetch(url)
         .then(response => response.json())
         .then(newsFeedData => {
-            data = newsFeedData.results;
-            dataInsert(data)
-            modalOpen(data)
+            const data = newsFeedData.results;
+
+            // Save data to localStorage
+            localStorage.setItem(cacheKey, JSON.stringify(data));
+            localStorage.setItem(timeKey, now);
+
+            dataInsert(data);
+            modalOpen(data);
+            topCardData(data);
         })
         .catch(err => console.error(err));
-
-
 }
-getNewsData()
 
+getNewsData();
 
