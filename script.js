@@ -163,7 +163,7 @@ function topCardData(data) {
     <div class="featured-content">
                 <span class="featured-badge">BREAKING</span>
                 <h2>${data[0].title}</h2>
-                <p>${data[0].description}</p>
+                <p>${data[0].description.split(" ").slice(0, 15).join(" ") + '...'}</p>
                 <a href="${data[0].link}" target="_blank" class="read-more">Read Full Story</a>
             </div>`
 
@@ -186,7 +186,7 @@ function getNewsData() {
         // Update time on interaction
         localStorage.setItem(timeKey, now);
 
-        dataInsert(data);
+        newsFeed(data);
         modalOpen(data);
         topCardData(data);
         return;
