@@ -18,7 +18,8 @@
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -653,8 +654,8 @@ html, body {
 }
 .article-close-btn {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 30px;
+  right: 30px;
   background-color: var(--bg-light);
   border: none;
   width: 40px;
@@ -691,6 +692,8 @@ html, body {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
 }
 
 .article-header-content {
@@ -945,8 +948,4 @@ html, body {
   .container {
     gap: 0;
   }
-  .article-modal-content::-webkit-scrollbar {
-  width: 0px;
-}
-
 }/*# sourceMappingURL=style.css.map */
